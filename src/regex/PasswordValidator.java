@@ -6,8 +6,10 @@ public class PasswordValidator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Rule 1: Password must have a minimum of 8 characters
-        // Rule 2: Password must have at least one uppercase letter
+        // Password rules:
+        // Rule 1: Minimum 8 characters
+        // Rule 2: At least one uppercase letter
+        // Rule 4: Exactly one special character
         System.out.print("Enter your password: ");
         String password = scanner.nextLine();
 
@@ -15,7 +17,7 @@ public class PasswordValidator {
         if (isValidPassword(password)) {
             System.out.println("Password is valid.");
         } else {
-            System.out.println("Invalid password. It must have at least 8 characters and contain at least one uppercase letter.");
+            System.out.println("Invalid password. It must have at least 8 characters, at least one uppercase letter, and exactly one special character.");
         }
 
         scanner.close();
@@ -30,6 +32,12 @@ public class PasswordValidator {
 
         // Rule 2: At least one uppercase letter
         if (!password.matches(".*[A-Z].*")) {
+            return false;
+        }
+
+        // Rule 4: Exactly one special character
+        // Special characters are considered: ! @ # $ % ^ & * ( ) _ + - = [ ] { } | ; : ' " , < . > / ? ~ ` (adjust based on your requirements)
+        if (!password.matches("^[^!@#$%^&*(),.?\":{}|<>]*[!@#$%^&*(),.?\":{}|<>][^!@#$%^&*(),.?\":{}|<>]*$")) {
             return false;
         }
 
